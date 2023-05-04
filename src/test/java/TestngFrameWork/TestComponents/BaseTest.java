@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import TestngFrameWork.PageObject.copy.HomePage;
@@ -35,17 +36,18 @@ public class BaseTest {
 		
 		if(browserName.equalsIgnoreCase("chrome")) {
 			//WebDriverManager.chromedriver().setup();
-			System.setProperty("webdriver.chrome.driver", "./setup/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(options);
 		}
 		else if(browserName.equalsIgnoreCase("edge")) {
-			//WebDriverManager.edgedriver().setup();
-			System.setProperty("webdriver.edge.driver", "./setup/msedgedriver.exe");
+			WebDriverManager.edgedriver().setup();
+			//System.setProperty("webdriver.edge.driver", "./driver/msedgedriver.exe");
 			driver = new EdgeDriver();
 		}
 		else if(browserName.equalsIgnoreCase("firefox")) {
+			//System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
@@ -59,13 +61,15 @@ public class BaseTest {
 	
 	@BeforeMethod(alwaysRun = true)
 	public HomePage launchApplication() throws IOException {
-		//BaseTest BaseTest = new BaseTest();
-		//driver = BaseTest.initializeDriver();
 		driver = initializeDriver();
 		HomePage = new HomePage(driver);
 		return HomePage;
 	}
-
+	
+	@AfterMethod(alwaysRun=true)
+	public void closeApplication() {
+		driver.quit();
+	}
 
 	public String getScreenshot(String tescaseName, WebDriver driver) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot)driver;

@@ -4,15 +4,20 @@
   <listeners>
     <listener class-name="TestngFrameWork.TestComponents.Listeners"/>
   </listeners>
-  <test thread-count="5" parallel="tests" name="Error Validation test(failed)">
+  <test thread-count="5" parallel="tests" name="Regression(failed)">
+    <groups>
+      <run>
+        <include name="RegressionTest"/>
+      </run>
+    </groups>
     <classes>
-      <class name="TestngFrameWork.Tests.ErrorValidationTest">
+      <class name="TestngFrameWork.Tests.TestCase">
         <methods>
-          <include name="closeApplication"/>
           <include name="launchApplication"/>
-          <include name="productErrorValidation"/>
+          <include name="test5"/>
+          <include name="test2"/>
         </methods>
-      </class> <!-- TestngFrameWork.Tests.ErrorValidationTest -->
+      </class> <!-- TestngFrameWork.Tests.TestCase -->
     </classes>
-  </test> <!-- Error Validation test(failed) -->
+  </test> <!-- Regression(failed) -->
 </suite> <!-- Failed suite [Suite] -->

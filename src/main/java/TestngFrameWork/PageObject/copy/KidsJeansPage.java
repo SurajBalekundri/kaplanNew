@@ -20,7 +20,7 @@ public class KidsJeansPage extends Utils {
 	@FindBy (xpath="//div[text()='Price -- Low to High']")
 	private WebElement LowToHighEle;
 	
-	@FindBy (xpath="//div[@class='_13oc-S']//a")
+	@FindBy (xpath="//div[@class='_3ywSr_']//img") // or //div[@class='_13oc-S']/div[2] or //div[@class='_13oc-S']//a  or //div[@class='_13oc-S']/div/div/a
 	private WebElement FirstItemEle;
 	
 	@FindBy (xpath ="//div[text()='Availability']")
